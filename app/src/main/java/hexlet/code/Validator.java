@@ -1,12 +1,13 @@
 package hexlet.code;
 
-public record Validator(String string) {
+import lombok.Data;
 
-    public static String validator(String string) {
-        return string;
-    }
+@Data
+public class Validator {
 
-    public static String string(String string) {
-        return string;
+    private String string;
+
+    public String string() {
+        return this.string;
     }
 }
