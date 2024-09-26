@@ -1,28 +1,19 @@
 package hexlet.code;
 
-import lombok.NonNull;
+public class StringSchema extends BaseSchema<String> {
 
-public class StringSchema extends Validator {
-    @NonNull
-    private final String string = string();
-
-
-    public String required() {
-        return string;
+    public StringSchema required() {
+        readPredicate("stringPredicate", value -> (value instanceof String) && !((String) value).isEmpty());
+        return this;
     }
 
-    public String minLength(int minNumber) {
-        var maxNumber = string.length();
-//        var maxNumber = string.length();
-//        return maxNumber >= minNumber;
-        if (maxNumber < minNumber) {
-            return null;
-        } else {
-            return string;
-        }
+    public StringSchema minLength(int minNumber) {
+        readPredicate("minLength", value -> (value instanceof String) && ((String) value).length() >= minNumber);
+        return this;
     }
 
-    public boolean contains(String specificLine) {
-        return string.contains(specificLine);
+    public StringSchema contains(String specificLine) {
+        readPredicate("contains", value -> (value instanceof String) && ((String) value).contains(specificLine));
+        return this;
     }
 }

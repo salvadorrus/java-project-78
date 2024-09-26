@@ -1,13 +1,16 @@
 package hexlet.code;
 
-import lombok.Data;
+//import lombok.Data;
 
-@Data
+//@Data
 public class Validator {
 
-    private String string;
 
-    public String string() {
-        return this.string;
+    public StringSchema string() {
+        return new StringSchema();
+    }
+
+    public NumberSchema number() {
+        return new NumberSchema();
     }
 }
