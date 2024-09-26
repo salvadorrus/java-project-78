@@ -3,7 +3,7 @@ package hexlet.code;
 public class StringSchema extends BaseSchema<String> {
 
     public StringSchema required() {
-        readPredicate("stringPredicate", value -> (value instanceof String) && !((String) value).isEmpty());
+        readPredicate("required", value -> (value != null) && !((String) value).isEmpty());
         return this;
     }
 

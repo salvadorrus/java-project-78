@@ -1,20 +1,22 @@
 package hexlet.code;
 
-//import lombok.NonNull;
+import java.util.Objects;
 
-public class NumberSchema extends Validator {
-//    @NonNull
-//    private final int number = number();
+public class NumberSchema extends BaseSchema<Integer> {
 
-    public int required() {
-        return this.number;
+    public NumberSchema required() {
+        readPredicate("required", Objects::nonNull);
+        return this;
     }
 
-    public static boolean positive(int positiveNumber) {
-        return
+    public NumberSchema positive() {
+        readPredicate("positive", value -> (value == null) || ((Integer) value) > 0);
+        return this;
     }
 
-    public static int range() {
-
+    public NumberSchema range(int numberOne, int numberTwo) {
+        readPredicate("range", value -> value != null && ((Integer) value) >= numberOne
+                && ((Integer) value) <= numberTwo);
+        return this;
     }
 }
