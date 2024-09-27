@@ -6,7 +6,9 @@ plugins {
 //    application
     checkstyle
     jacoco
+    id("io.freefair.lombok") version "8.4"
     id("com.github.ben-manes.versions") version "0.50.0"
+    id("com.github.johnrengelman.shadow") version "8.1.1"
     id("com.adarshr.test-logger") version "3.2.0"
 }
 
@@ -33,6 +35,14 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    finalizedBy(tasks.jacocoTestReport)
+    testLogging {
+        exceptionFormat = TestExceptionFormat.FULL
+        events = mutableSetOf(TestLogEvent.FAILED, TestLogEvent.PASSED, TestLogEvent.SKIPPED)
+        // showStackTraces = true
+        // showCauses = true
+        showStandardStreams = true
+    }
 }
 
 tasks.jacocoTestReport { reports { xml.required.set(true) } }
