@@ -1,8 +1,5 @@
 package hexlet.code;
 
-//import lombok.Data;
-
-//@Data
 public class Validator {
 
 
