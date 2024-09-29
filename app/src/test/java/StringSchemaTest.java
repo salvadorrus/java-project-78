@@ -1,20 +1,22 @@
-//import org.junit.jupiter.api.BeforeAll;
+import hexlet.code.Validator;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 class StringSchemaTest {
-    private  static String string;
-    private  String expected;
+    @Test
+    public void stringSchemaTest() {
+        var v = new Validator();
+        var schema = v.string();
 
-//    @BeforeAll
-//    public static void beforeAll() {
-//        var string = "what does the fox say";
-//        var expected = "";
-//    }
+        assertTrue(schema.isValid(null));
+        assertTrue(schema.minLength(3).isValid("hex"));
+        assertTrue(schema.contains("hex").isValid("hexlet"));
+        assertTrue(schema.required().minLength(6).contains("hex").isValid("hexlet"));
 
-    public static void schemaTest() {
-        var result = "what does the fox say";
-        assertEquals(result, string);
+        assertFalse(schema.required().isValid(null));
+        assertFalse(schema.minLength(5).isValid("hex"));
+        assertFalse(schema.contains("abc").isValid("hexlet"));
     }
-
 }
