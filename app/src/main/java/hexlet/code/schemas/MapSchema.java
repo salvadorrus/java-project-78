@@ -1,4 +1,4 @@
-package hexlet.code;
+package hexlet.code.schemas;
 
 import java.util.Map;
 import java.util.Objects;
@@ -15,12 +15,11 @@ public class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
         return this;
     }
 
-    public MapSchema<K, V> shape(Map<K, BaseSchema<V>> schema) {
+    public void shape(Map<K, BaseSchema<V>> schema) {
         readPredicate("shape", value -> schema.entrySet().stream().allMatch(item -> {
             Object object = ((Map<?, ?>) value).get(item.getKey());
             return item.getValue().isValid(object);
         })
         );
-        return this;
     }
 }
