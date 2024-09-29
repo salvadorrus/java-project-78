@@ -7,11 +7,11 @@ import java.util.function.Predicate;
 public abstract class BaseSchema<T> {
     private final Map<String, Predicate<Object>> predicateMap = new HashMap<>();
 
-    public void readPredicate(String type, Predicate<Object> predicate) {
+    public final void readPredicate(String type, Predicate<Object> predicate) {
         predicateMap.put(type, predicate);
     }
 
-    public boolean isValid(Object object) {
+    public final boolean isValid(Object object) {
         return predicateMap.values().stream().allMatch(predicate -> predicate.test(object));
     }
 }
