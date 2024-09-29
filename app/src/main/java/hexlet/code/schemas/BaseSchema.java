@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Predicate;
 
-public class BaseSchema<T> {
+public abstract class BaseSchema<T> {
     private final Map<String, Predicate<Object>> predicateMap = new HashMap<>();
 
     public void readPredicate(String type, Predicate<Object> predicate) {

@@ -3,7 +3,7 @@ package hexlet.code.schemas;
 import java.util.Map;
 import java.util.Objects;
 
-public class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
+public final class MapSchema<K, V> extends BaseSchema<Map<K, V>> {
 
     public MapSchema<K, V> required() {
         readPredicate("required", Objects::nonNull);
