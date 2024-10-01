@@ -8,12 +8,12 @@ public final class StringSchema extends BaseSchema<String> {
     }
 
     public StringSchema minLength(int minNumber) {
-        readPredicate("minLength", value -> (value instanceof String) && ((String) value).length() >= minNumber);
+        readPredicate("minLength", value -> ((String) value).length() >= minNumber);
         return this;
     }
 
     public StringSchema contains(String specificLine) {
-        readPredicate("contains", value -> (value instanceof String) && ((String) value).contains(specificLine));
+        readPredicate("contains", value -> ((String) value).contains(specificLine));
         return this;
     }
 }
